@@ -242,6 +242,55 @@ a {
   object-fit: cover;
 }
 
+/* SERVICES GRID */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.service-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px 22px 20px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+}
+
+.service-heading {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+
+.service-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.service-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.95rem;
+  padding: 4px 0;
+}
+
+.service-name {
+  font-weight: 500;
+}
+
+.service-price {
+  font-weight: 600;
+}
+
+.services-note {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
 /* FOOTER */
 
 .footer {
@@ -308,5 +357,9 @@ a {
 
   .about-photo {
     order: -1;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
