@@ -279,6 +279,30 @@
       margin-bottom: 32px;
     }
 
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text {
+  /* nothing fancy yet; uses existing section styles */
+    }
+
+    .about-photo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-photo img {
+      max-width: 360px;
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      object-fit: cover;
+    }
+
     /* Responsive */
 
     @media (max-width: 900px) {
