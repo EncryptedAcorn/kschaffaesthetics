@@ -82,6 +82,35 @@ a {
   transform: translateY(-1px);
 }
 
+/* MOBILE NAV TOGGLE */
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.nav-toggle-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--hero-text);
+  margin: 4px 0;
+  border-radius: 999px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* When menu is open, animate the icon into an X */
+.nav-toggle.nav-open .nav-toggle-line:nth-child(1) {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.nav-toggle.nav-open .nav-toggle-line:nth-child(2) {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
 /* HERO */
 
 .hero {
@@ -347,8 +376,41 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .nav-toggle {
+    display: block;
+  }
+
   .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 5vw;
+    margin-top: 8px;
+    background: rgba(227, 176, 162, 0.98);
+    border-radius: 999px;
+    padding: 10px 18px;
     display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    order: -1;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 
   .about-grid {
