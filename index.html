@@ -3,35 +3,420 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Beauty Studio</title>
+  <title>K.Schaff Aesthetics</title>
+
+  <!-- Google Fonts (you can change these later) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      /* Nude-pink hero color – tweak if you want */
+      --hero-bg: #e3b0a2;
+      --hero-text: #fdf9f6;
+      --footer-bg: #e7e1d7;
+      --text-main: #3c3331;
+      --accent: #ffffff;
+      --button-bg: #fdf9f6;
+      --button-text: #3c3331;
+      --button-hover-bg: #f7efe7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #fafafa;
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background-color: #faf7f4;
     }
-    header {
-      text-align: center;
-      padding: 50px;
-      background: #ffe6f2;
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    h1 {
+
+    /* Header / Nav */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(227, 176, 162, 0.96); /* hero bg with slight transparency */
+      backdrop-filter: blur(6px);
+    }
+
+    .site-title {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--hero-text);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.9rem;
+      color: var(--hero-text);
+    }
+
+    .nav-links a {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-cta {
+      padding: 8px 20px;
+      border-radius: 999px;
+      background: var(--button-bg);
+      color: var(--button-text);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--button-hover-bg);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 100vh;
+      padding: 120px 8vw 80px; /* extra top for fixed header */
+      background: var(--hero-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      color: var(--hero-text);
+    }
+
+    .hero-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      margin: 0 0 20px;
+    }
+
+    .hero-title span.emoji {
+      font-size: 1.1em;
+    }
+
+    .hero-text {
+      max-width: 360px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.95;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 11px 26px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--button-bg);
+      color: var(--button-text);
+    }
+
+    .btn-primary:hover {
+      background: var(--button-hover-bg);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(253, 249, 246, 0.6);
+      color: var(--hero-text);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(253, 249, 246, 0.12);
+    }
+
+    .hero-image-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-card {
+      background: #fdf9f6;
+      padding: 36px;
+      border-radius: 16px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+      max-width: 440px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Footer */
+
+    .footer {
+      background: var(--footer-bg);
+      padding: 40px 8vw 36px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 40px;
+      font-size: 0.9rem;
+    }
+
+    .footer-brand {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
       margin-bottom: 10px;
     }
-    p {
-      color: #555;
+
+    .footer-heading {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      margin-bottom: 8px;
+    }
+
+    .footer p {
+      margin: 2px 0;
+    }
+
+    .footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .footer-small {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* Sections below hero (anchors) */
+    section.page-section {
+      padding: 80px 8vw 60px;
+      background: #faf7f4;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      max-width: 520px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        padding: 96px 6vw 48px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-image-wrap {
+        order: -1; /* logo above text on mobile */
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none; /* keep it simple for now; can add mobile menu later */
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to the Beauty Studio</h1>
-    <p>Your glow-up starts here ✨</p>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="site-title">K.Schaff Aesthetics</div>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <!-- TODO: replace href with Vagaro booking link -->
+      <a href="#book" class="nav-cta">Book now</a>
+    </nav>
   </header>
 
-  <section>
-    <h2 style="text-align:center;">More coming soon…</h2>
-  </section>
+  <!-- Hero -->
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">Injectable aesthetics</div>
+          <h1 class="hero-title">
+            Level Up Your Glow <span class="emoji">✨</span>
+          </h1>
+          <p class="hero-text">
+            Stop hiding behind filters and start showing up radiant. From subtly fuller lips to refined lines,
+            each treatment is tailored to keep you looking like you—only elevated.
+          </p>
+          <div class="hero-actions">
+            <!-- TODO: replace href with Vagaro booking link -->
+            <a href="#book" class="btn-primary">Book your appointment</a>
+            <a href="#services" class="btn-ghost">Learn more</a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <div class="hero-image-card">
+            <!-- TODO: update src to your real logo path in the repo -->
+            <img src="images/kschaff-logo.png" alt="K.Schaff Aesthetics logo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services section (placeholder for now) -->
+    <section class="page-section" id="services">
+      <h2 class="section-title">Services</h2>
+      <p class="section-intro">
+        Customize this section with her actual offerings: lips, Botox, filler, tox, consultations, and more.
+        You can lay out cards, pricing, or just a high-level overview here.
+      </p>
+      <!-- You can add a simple list or grid here later -->
+    </section>
+
+    <!-- About section -->
+    <section class="page-section" id="about">
+      <h2 class="section-title">About</h2>
+      <p class="section-intro">
+        Add a short bio here—training, credentials, and what makes her approach to aesthetics different.
+        You can also add her syringe photo as a secondary image in this section later.
+      </p>
+    </section>
+
+    <!-- Booking anchor section (for Vagaro embed) -->
+    <section class="page-section" id="book">
+      <h2 class="section-title">Book Now</h2>
+      <p class="section-intro">
+        This is where we’ll embed the Vagaro booking widget, so clients can pick a service, date, and time
+        without ever leaving the site.
+      </p>
+
+      <!-- TODO: Paste Vagaro's embed code inside this div -->
+      <div id="vagaro-booking-widget">
+        <!-- Example:
+        <script src="https://www.vagaro.com//some/auto-generated/script.js"></script>
+        -->
+      </div>
+    </section>
+
+    <!-- Contact section (anchor) -->
+    <section class="page-section" id="contact">
+      <h2 class="section-title">Contact & Payments</h2>
+      <p class="section-intro">
+        Use this space for contact details, social links, and your payment options. You can also embed a
+        Stripe Buy Button here for deposits or gift cards.
+      </p>
+
+      <!-- TODO: Paste Stripe Buy Button code here when you have it -->
+      <div id="stripe-payments">
+        <!-- Example Stripe Buy Button snippet goes here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">K.Schaff Aesthetics LLC</div>
+        <p class="footer-small">Subtle, elevated, confidence-forward aesthetics.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Location</div>
+        <p>932 W Second North St</p>
+        <p>Morristown, TN 37814</p>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <p><a href="mailto:kschaffaesthetics98@gmail.com">kschaffaesthetics98@gmail.com</a></p>
+        <p>(555) 555-5555 <!-- replace with real number --></p>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
