@@ -271,6 +271,19 @@ a {
   object-fit: cover;
 }
 
+/* BOOKING GRID */
+/* Centered Book Now section */
+.booknow-wrapper {
+  text-align: center;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.booknow-btn {
+  margin-top: 10px;
+  display: inline-block;
+}
+
 /* SERVICES GRID */
 
 .services-grid {
