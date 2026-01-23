@@ -297,10 +297,13 @@ a {
   border-radius: 18px;
   padding: 28px 28px 24px;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+  margin-bottom: 0;
 }
 
 .book-actions {
-  margin-top: 18px;
+  margin-top: 28px;              /* was 18px */
+  display: flex;
+  justify-content: center;
 }
 
 .book-subtitle {
