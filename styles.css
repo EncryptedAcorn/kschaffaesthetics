@@ -412,19 +412,24 @@ a {
 
 /* Cherry button styled to match Vagaro Book Now button */
 .vagaro-match-btn {
-  background: var(--hero-bg);          /* #e3b0a2 */
+  background: var(--hero-bg);
   color: #fff;
   border: none;
-  border-radius: 6px;                  /* more “button”, less “pill” */
+  border-radius: 6px;
   padding: 12px 28px;
   font-size: 0.95rem;
-  font-weight: 600;
-  min-width: 170px;                    /* helps match width */
+  font-weight: 500;              /* ↓ lighter */
+  text-transform: none;
+  letter-spacing: 0.01em;        /* tighter text */
+  min-width: 170px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  display: inline-block;
-  line-height: 1.1;
   transition: filter 0.2s ease, transform 0.1s ease;
 }
+
 
 .vagaro-match-btn:hover {
   filter: brightness(0.96);
