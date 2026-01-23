@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pay with Cherry | K.Schaff Aesthetics</title>
+
+  <!-- Use your existing site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Optional: favicon if you added it -->
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-title">K.Schaff Aesthetics</div>
+    <nav class="nav-links" id="main-nav">
+      <a href="/#services">Services</a>
+      <a href="/#about">About</a>
+      <a href="/#book" class="nav-cta">Book now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-section" style="padding-top: 140px;">
+      <h2 class="section-title">Pay with Cherry</h2>
+      <p class="section-intro">
+        Choose your amount and complete payment or financing options through Cherry.
+      </p>
+
+      <!-- CHERRY WIDGET BEGIN -->
+      <script>
+        (function (w, d, s, o, f, js, fjs) {
+          w[o] = w[o] || function () {
+            (w[o].q = w[o].q || []).push(arguments);
+          };
+          (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+          js.id = o;
+          js.src = f;
+          js.async = 1;
+          fjs.parentNode.insertBefore(js, fjs);
+        })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+
+        _hw("init", {
+          debug: false,
+          variables: {
+            slug: "k-schaff-aesthetics-llc",
+            name: "KSchaff Aesthetics LLC",
+            images: "none",
+            customLogo: "",
+            defaultPurchaseAmount: 750,
+            customImage: "",
+            imageCategory: "aesthetics",
+            language: "en",
+          },
+          styles: {
+            primaryColor: "#e3b0a2",
+            secondaryColor: "#e3b0a210",
+            fontFamily: "Playfair Display",
+            headerFontFamily: "Playfair Display",
+          }
+        }, ["hero", "calculator", "howitworks", "faq"]);
+      </script>
+
+      <div id="hero"></div>
+      <div id="calculator"></div>
+      <div id="howitworks"></div>
+      <div id="faq"></div>
+      <!-- CHERRY WIDGET END -->
+
+    </section>
+  </main>
+
+</body>
+</html>
