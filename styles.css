@@ -403,24 +403,34 @@ a {
   opacity: 0.7;
 }
 
-/* Match Vagaro widget trigger button */
-.vagaro-like-btn {
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 999px;
-  background: #fdf9f6;
-  color: #3c3331;
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid rgba(60, 51, 49, 0.2);
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+/* Center the action area inside each card */
+.book-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
 }
 
-.vagaro-like-btn:hover {
-  background: #f7efe7;
+/* Cherry button styled to match Vagaro Book Now button */
+.vagaro-match-btn {
+  background: var(--hero-bg);          /* #e3b0a2 */
+  color: #fff;
+  border: none;
+  border-radius: 6px;                  /* more “button”, less “pill” */
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-width: 170px;                    /* helps match width */
+  text-align: center;
+  display: inline-block;
+  line-height: 1.1;
+  transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.vagaro-match-btn:hover {
+  filter: brightness(0.96);
   transform: translateY(-1px);
 }
+
 
 /* RESPONSIVE */
 
