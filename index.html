@@ -254,25 +254,178 @@ If you’ve read this far I just wanna say THANK YOU! I am so excited for what i
     </div>
   </footer>
 
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+<script>
+  /* ===============================
+     Mobile Nav Toggle (existing)
+     =============================== */
 
-    if (navToggle && navLinks) {
-      navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-open');
-        navToggle.classList.toggle('nav-open');
-      });
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
-      // Close menu when a link is clicked (mobile)
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('nav-open');
-          navToggle.classList.remove('nav-open');
-        });
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
+      navToggle.classList.toggle('nav-open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-open');
+        navToggle.classList.remove('nav-open');
       });
+    });
+  }
+
+  /* ===============================
+     Good Faith Exam Modal Logic
+     =============================== */
+
+  (function () {
+    const modal = document.getElementById("gfe-modal");
+    const btnCancel = document.getElementById("gfe-cancel");
+    const btnContinue = document.getElementById("gfe-continue");
+    const ack = document.getElementById("gfe-ack");
+
+    if (!modal || !btnCancel || !btnContinue || !ack) return;
+
+    const STORAGE_KEY = "gfe_ack_expires_at";
+    const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+
+    let pendingClickTarget = null;
+    let bypassOnce = false;
+
+    function isAcknowledgedStillValid() {
+      try {
+        const expiresAt = Number(localStorage.getItem(STORAGE_KEY));
+        return Number.isFinite(expiresAt) && Date.now() < expiresAt;
+      } catch {
+        return false;
+      }
     }
-  </script>
+
+    function setAcknowledgedFor30Days() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          String(Date.now() + THIRTY_DAYS_MS)
+        );
+      } catch {}
+    }
+
+    function openModal() {
+      ack.checked = false;
+      btnContinue.disabled = true;
+
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      ack.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+
+      if (pendingClickTarget && typeof pendingClickTarget.focus === "function") {
+        pendingClickTarget.focus();
+      }
+    }
+
+    // Enable Continue only when checked
+    ack.addEventListener("change", () => {
+      btnContinue.disabled = !ack.checked;
+    });
+
+    // Close on backdrop
+    modal.addEventListener("click", (e) => {
+      if (e.target?.dataset?.close === "true") {
+        closeModal();
+      }
+    });
+
+    // Close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+
+    btnCancel.addEventListener("click", closeModal);
+
+    btnContinue.addEventListener("click", () => {
+      if (!ack.checked) return;
+
+      setAcknowledgedFor30Days();
+
+      bypassOnce = true;
+      closeModal();
+
+      if (pendingClickTarget) {
+        pendingClickTarget.click();
+        pendingClickTarget = null;
+      }
+    });
+
+    // Intercept Vagaro clicks
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (isAcknowledgedStillValid()) return;
+
+        if (bypassOnce) {
+          bypassOnce = false;
+          return;
+        }
+
+        const bookingCard = e.target.closest(".book-card");
+        if (!bookingCard) return;
+
+        const inVagaro = e.target.closest(".vagaro");
+        if (!inVagaro) return;
+
+        const clickable = e.target.closest("a, button, [role='button']");
+        if (!clickable) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        pendingClickTarget = clickable;
+        openModal();
+      },
+      true
+    );
+  })();
+</script>
+
+
+  <!-- Good Faith Exam Modal -->
+<div class="modal" id="gfe-modal" aria-hidden="true">
+  <div class="modal__backdrop" data-close="true"></div>
+
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="gfe-title">
+    <h3 class="modal__title" id="gfe-title">Good Faith Exam Notice</h3>
+
+    <p class="modal__text" id="gfe-message">
+      <!-- Replace this text with your final wording -->
+      Some services may require a Good Faith Exam prior to treatment. You’ll receive details after booking.
+    </p>
+
+    <label class="modal__check">
+      <input type="checkbox" id="gfe-ack" />
+      <span>I understand</span>
+    </label>
+
+    <div class="modal__actions">
+      <button type="button" class="modal__btn modal__btn--ghost" id="gfe-cancel">Cancel</button>
+      <button type="button" class="modal__btn modal__btn--primary" id="gfe-continue" disabled>
+        Continue to booking
+      </button>
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
