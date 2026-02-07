@@ -480,6 +480,30 @@ a {
   justify-content: center;
 }
 
+/* Checkbox row in modal */
+.modal__check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 16px;
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+.modal__check input {
+  width: 16px;
+  height: 16px;
+}
+
+/* Disabled state for Continue button */
+.modal__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+
 
 /* RESPONSIVE */
 
