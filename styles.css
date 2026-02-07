@@ -585,7 +585,10 @@ a {
   filter: none;
 }
 
-
+/* Hide the embedded Vagaro widget UI (we use our custom button instead) */
+.vagaro-hidden {
+  display: none !important;
+}
 
 /* RESPONSIVE */
 
