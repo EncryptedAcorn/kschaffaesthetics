@@ -10,11 +10,8 @@
   --button-hover-bg: #f7efe7;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-/* Global fonts */
 body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -22,12 +19,8 @@ body {
   background-color: #faf7f4;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
-/* All key headings use Playfair */
 .site-title,
 .hero-title,
 .section-title,
@@ -38,7 +31,6 @@ a {
 }
 
 /* HEADER & NAV */
-
 .site-header {
   position: fixed;
   top: 0;
@@ -74,9 +66,7 @@ a {
   transition: opacity 0.2s ease;
 }
 
-.nav-links a:hover {
-  opacity: 1;
-}
+.nav-links a:hover { opacity: 1; }
 
 .nav-cta {
   padding: 8px 20px;
@@ -95,7 +85,6 @@ a {
 }
 
 /* MOBILE NAV TOGGLE */
-
 .nav-toggle {
   display: none;
   background: transparent;
@@ -114,7 +103,6 @@ a {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* When menu is open, animate the icon into an X */
 .nav-toggle.nav-open .nav-toggle-line:nth-child(1) {
   transform: translateY(3px) rotate(45deg);
 }
@@ -124,7 +112,6 @@ a {
 }
 
 /* HERO */
-
 .hero {
   min-height: 100vh;
   padding: 120px 8vw 80px;
@@ -143,9 +130,7 @@ a {
   align-items: center;
 }
 
-.hero-copy {
-  color: var(--hero-text);
-}
+.hero-copy { color: var(--hero-text); }
 
 .hero-eyebrow {
   text-transform: uppercase;
@@ -161,9 +146,7 @@ a {
   margin: 0 0 20px;
 }
 
-.hero-title span.emoji {
-  font-size: 1.1em;
-}
+.hero-title span.emoji { font-size: 1.1em; }
 
 .hero-text {
   max-width: 360px;
@@ -211,16 +194,10 @@ a {
   color: var(--hero-text);
 }
 
-.btn-ghost:hover {
-  background: rgba(253, 249, 246, 0.12);
-}
+.btn-ghost:hover { background: rgba(253, 249, 246, 0.12); }
 
 /* HERO IMAGE */
-
-.hero-image-wrap {
-  display: flex;
-  justify-content: center;
-}
+.hero-image-wrap { display: flex; justify-content: center; }
 
 .hero-image-card {
   background: #fdf9f6;
@@ -241,7 +218,6 @@ a {
 }
 
 /* SECTIONS */
-
 .page-section {
   padding: 80px 8vw 60px;
   background: #faf7f4;
@@ -259,8 +235,7 @@ a {
   margin-bottom: 32px;
 }
 
-/* ABOUT SECTION GRID */
-
+/* ABOUT */
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -268,10 +243,7 @@ a {
   align-items: center;
 }
 
-.about-photo {
-  display: flex;
-  justify-content: center;
-}
+.about-photo { display: flex; justify-content: center; }
 
 .about-photo img {
   max-width: 360px;
@@ -281,8 +253,7 @@ a {
   object-fit: cover;
 }
 
-/* Booking & Payments grid */
-
+/* BOOKING GRID */
 .book-grid {
   max-width: 960px;
   margin: 0 auto;
@@ -301,30 +272,22 @@ a {
 }
 
 .book-actions {
-  margin-top: 28px;              /* was 18px */
+  margin-top: 28px; /* keep your preferred spacing */
   display: flex;
   justify-content: center;
 }
 
-.book-subtitle {
-  font-size: 1.3rem;
-  margin: 0 0 10px;
-}
+.book-subtitle { font-size: 1.3rem; margin: 0 0 10px; }
 
-.book-text {
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
+.book-text { font-size: 0.95rem; line-height: 1.6; }
 
-/* visually disabled placeholder button */
 .disabled-btn {
   opacity: 0.6;
   cursor: default;
   pointer-events: none;
 }
 
-/* SERVICES GRID */
-
+/* SERVICES */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -339,16 +302,9 @@ a {
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
 }
 
-.service-heading {
-  font-size: 1.15rem;
-  margin: 0 0 10px;
-}
+.service-heading { font-size: 1.15rem; margin: 0 0 10px; }
 
-.service-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+.service-list { list-style: none; margin: 0; padding: 0; }
 
 .service-list li {
   display: flex;
@@ -358,34 +314,26 @@ a {
   padding: 4px 0;
 }
 
-.service-name {
-  font-weight: 500;
-}
+.service-name { font-weight: 500; }
+.service-price { font-weight: 600; }
 
-.service-price {
-  font-weight: 600;
-}
+.services-note { font-size: 0.9rem; opacity: 0.85; }
 
-.services-note {
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
-/* Weight-loss sublists (nested UL inside a service-list LI) */
+/* Weight-loss nested sublists */
 .service-list li.service-group {
-  display: block;              /* override flex */
+  display: block;
   padding: 6px 0;
 }
 
 .service-sublist {
   list-style: none;
   margin: 8px 0 0;
-  padding: 0 0 0 14px;         /* indent */
+  padding: 0 0 0 14px;
   border-left: 2px solid rgba(60, 51, 49, 0.12);
 }
 
 .service-sublist li {
-  display: flex;               /* keep mg + price aligned */
+  display: flex;
   justify-content: space-between;
   gap: 12px;
   padding: 4px 0;
@@ -403,10 +351,7 @@ a {
   font-style: italic;
 }
 
-
-
 /* FOOTER */
-
 .footer {
   background: var(--footer-bg);
   padding: 40px 8vw 36px;
@@ -421,10 +366,7 @@ a {
   font-size: 0.9rem;
 }
 
-.footer-brand {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-}
+.footer-brand { font-size: 1.1rem; margin-bottom: 10px; }
 
 .footer-heading {
   font-weight: 600;
@@ -434,20 +376,9 @@ a {
   margin-bottom: 8px;
 }
 
-.footer-small {
-  margin-top: 12px;
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
+.footer-small { margin-top: 12px; font-size: 0.75rem; opacity: 0.7; }
 
-/* Center the action area inside each card */
-.book-actions {
-  margin-top: 18px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Cherry button styled to match Vagaro Book Now button */
+/* Button style used for Booking + Cherry */
 .vagaro-match-btn {
   background: var(--hero-bg);
   color: #fff;
@@ -455,9 +386,9 @@ a {
   border-radius: 6px;
   padding: 12px 28px;
   font-size: 0.95rem;
-  font-weight: 500;              /* ↓ lighter */
+  font-weight: 500;
   text-transform: none;
-  letter-spacing: 0.01em;        /* tighter text */
+  letter-spacing: 0.01em;
   min-width: 170px;
   height: 44px;
   display: inline-flex;
@@ -467,20 +398,12 @@ a {
   transition: filter 0.2s ease, transform 0.1s ease;
 }
 
-
 .vagaro-match-btn:hover {
   filter: brightness(0.96);
   transform: translateY(-1px);
 }
 
-.vagaro-match-btn {
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Modal (Good Faith Exam) */
+/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
@@ -488,9 +411,7 @@ a {
   display: none;
 }
 
-.modal.is-open {
-  display: block;
-}
+.modal.is-open { display: block; }
 
 .modal__backdrop {
   position: absolute;
@@ -549,11 +470,8 @@ a {
   color: #fff;
 }
 
-.modal__btn--primary:hover {
-  filter: brightness(0.96);
-}
+.modal__btn--primary:hover { filter: brightness(0.96); }
 
-/* Checkbox row in modal */
 .modal__check {
   display: flex;
   align-items: center;
@@ -563,56 +481,24 @@ a {
   user-select: none;
 }
 
-.modal__check input {
-  width: 16px;
-  height: 16px;
-}
+.modal__check input { width: 16px; height: 16px; }
 
-/* Disabled state for Continue button */
 .modal__btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
   filter: none;
-}
-
-
-/* Disabled state for Continue button */
-.modal__btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  filter: none;
-}
-
-/* Hide the embedded Vagaro widget UI (we use our custom button instead) */
-.vagaro-hidden {
-  display: none !important;
 }
 
 /* RESPONSIVE */
-
 @media (max-width: 900px) {
-  .hero {
-    padding: 96px 6vw 48px;
-  }
+  .hero { padding: 96px 6vw 48px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-image-wrap { order: -1; }
 
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+  .footer-inner { grid-template-columns: 1fr; }
 
-  .hero-image-wrap {
-    order: -1;
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-toggle {
-    display: block;
-  }
+  .nav-toggle { display: block; }
 
   .nav-links {
     position: absolute;
@@ -627,27 +513,13 @@ a {
     gap: 10px;
   }
 
-  .nav-links a {
-    font-size: 0.9rem;
-  }
+  .nav-links a { font-size: 0.9rem; }
 
-  .nav-links.nav-open {
-    display: flex;
-  }
+  .nav-links.nav-open { display: flex; }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { order: -1; }
 
-  .about-photo {
-    order: -1;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .book-grid {
-    grid-template-columns: 1fr;
-  }
+  .services-grid { grid-template-columns: 1fr; }
+  .book-grid { grid-template-columns: 1fr; }
 }
