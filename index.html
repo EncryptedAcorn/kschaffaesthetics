@@ -179,41 +179,50 @@ If you’ve read this far I just wanna say THANK YOU! I am so excited for what i
 <section class="page-section" id="book">
   <div class="book-grid">
     
-    <!-- Booking card -->
-    <article class="book-card">
-      <h2 class="section-title">Booking &amp; Payments</h2>
-      <p class="section-intro">
-        Ready to glow? Book your appointment through Vagaro and secure your spot
-        with just a few clicks.
-      </p>
+<!-- Booking card -->
+<article class="book-card">
+  <h2 class="section-title">Booking &amp; Payments</h2>
+  <p class="section-intro">
+    Ready to glow? Book your appointment through Vagaro and secure your spot
+    with just a few clicks.
+  </p>
 
-      <div class="book-actions">
+  <!-- Custom button we control -->
+  <div class="book-actions">
+    <a
+      href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVPZhTrN//Q1/v/78hFYNEj0bhj9+NI83UJKEhJ2ROVta5nhu3TBmtFBh2jIm16jzh20Qk6lmteN41G2tLOlk9u22wbxlpOO0b+1Z9BfPN2f7+rSf5yoZcGrSd5erkHzarwqnbXm4X1wXQ3JCz6EEMXvE9Mds1eG7qhh5KSB3GKTvd8R+CbtCFRMf6oHZVPFPibqpahFmIRsOlWZ2Y2FebXNTnmyC9PtmrEXV9qFvnN8LkMDThMpippTHG/hVqEOxkADoG3KtJ89X9fCfZuYBOhUJBlTJgZTRs6cCMi0UcePH1xDhmNtqLz1HL41R2eTklARJCNTFEetZz3Z61k3weGJiGsP0TeLCaWiJo+X09qd4fIcAnDd3JdssMYT6lbm0BpB6tINxIdwDC5x8GWCPDyp1WXVRIz1YS28uo8HcNmrs&c_type=tab"
+      class="vagaro-match-btn"
+      id="book-vagaro-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      Book Appointment
+    </a>
+  </div>
 
-        <!-- Vagaro Widget -->
-        <div class="vagaro" 
-          style="width:250px; padding:0; border:0; margin:0 auto; text-align:center; font-size:14px; color:#AAA;">
-          
-          <style>
-            .vagaro a { 
-              font-size:14px; 
-              color:#AAA; 
-              text-decoration:none; 
-            }
-          </style>
+  <!-- Keep Vagaro widget (hidden) so you still have the embed on the page if needed -->
+  <div class="vagaro vagaro-hidden"
+    style="width:250px; padding:0; border:0; margin:0 auto; text-align:center; font-size:14px; color:#AAA;">
+    <style>
+      .vagaro a {
+        font-size:14px;
+        color:#AAA;
+        text-decoration:none;
+      }
+    </style>
 
-          <a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;
-          <a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;
-          <a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;
-          <a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a>
+    <a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;
+    <a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;
+    <a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;
+    <a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a>
 
-          <script 
-            type="text/javascript" 
-            src="https://www.vagaro.com//resources/WidgetWindowLoader/OZqqC3apEJGcT3qmV35y6JuPlXiz3avV34mC2PlFK9lRsiWJcyxapkUcvCu7gevEhAJDXwOapcUbfY?v=vB1vQYSDHC008hcetQ9yrSj7NUQ6edEFKEYcMXGR3oQ#">
-          </script>
-        </div>
+    <script
+      type="text/javascript"
+      src="https://www.vagaro.com//resources/WidgetWindowLoader/OZqqC3apEJGcT3qmV35y6JuPlXiz3avV34mC2PlFK9lRsiWJcyxapkUcvCu7gevEhAJDXwOapcUbfY?v=vB1vQYSDHC008hcetQ9yrSj7NUQ6edEFKEYcMXGR3oQ#">
+    </script>
+  </div>
+</article>
 
-      </div>
-    </article>
 
     <!-- Cherry Button -->
     <article class="book-card">
@@ -280,141 +289,113 @@ If you’ve read this far I just wanna say THANK YOU! I am so excited for what i
   </div>
 
   <script>
-    /* ===============================
-       Mobile Nav Toggle (existing)
-       =============================== */
+  /* ===============================
+     Mobile Nav Toggle (existing)
+     =============================== */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
+      navToggle.classList.toggle('nav-open');
+    });
 
-    if (navToggle && navLinks) {
-      navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-open');
-        navToggle.classList.toggle('nav-open');
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-open');
+        navToggle.classList.remove('nav-open');
       });
+    });
+  }
 
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('nav-open');
-          navToggle.classList.remove('nav-open');
-        });
-      });
+  /* ===============================
+     Good Faith Exam Modal Logic (custom button)
+     =============================== */
+  (function () {
+    const modal = document.getElementById("gfe-modal");
+    const btnCancel = document.getElementById("gfe-cancel");
+    const btnContinue = document.getElementById("gfe-continue");
+    const ack = document.getElementById("gfe-ack");
+    const bookBtn = document.getElementById("book-vagaro-btn");
+
+    if (!modal || !btnCancel || !btnContinue || !ack || !bookBtn) return;
+
+    const STORAGE_KEY = "gfe_ack_expires_at";
+    const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+
+    let pendingHref = null;
+
+    function isAcknowledgedStillValid() {
+      try {
+        const expiresAt = Number(localStorage.getItem(STORAGE_KEY));
+        return Number.isFinite(expiresAt) && Date.now() < expiresAt;
+      } catch {
+        return false;
+      }
     }
 
-    /* ===============================
-       Good Faith Exam Modal Logic
-       =============================== */
+    function setAcknowledgedFor30Days() {
+      try {
+        localStorage.setItem(STORAGE_KEY, String(Date.now() + THIRTY_DAYS_MS));
+      } catch {}
+    }
 
-    (function () {
-      const modal = document.getElementById("gfe-modal");
-      const btnCancel = document.getElementById("gfe-cancel");
-      const btnContinue = document.getElementById("gfe-continue");
-      const ack = document.getElementById("gfe-ack");
+    function openModal(href) {
+      pendingHref = href;
 
-      if (!modal || !btnCancel || !btnContinue || !ack) return;
+      ack.checked = false;
+      btnContinue.disabled = true;
 
-      const STORAGE_KEY = "gfe_ack_expires_at";
-      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
 
-      let pendingClickTarget = null;
-      let bypassOnce = false;
+      ack.focus();
+    }
 
-      function isAcknowledgedStillValid() {
-        try {
-          const expiresAt = Number(localStorage.getItem(STORAGE_KEY));
-          return Number.isFinite(expiresAt) && Date.now() < expiresAt;
-        } catch {
-          return false;
-        }
-      }
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
 
-      function setAcknowledgedFor30Days() {
-        try {
-          localStorage.setItem(STORAGE_KEY, String(Date.now() + THIRTY_DAYS_MS));
-        } catch {}
-      }
+    ack.addEventListener("change", () => {
+      btnContinue.disabled = !ack.checked;
+    });
 
-      function openModal() {
-        ack.checked = false;
-        btnContinue.disabled = true;
+    modal.addEventListener("click", (e) => {
+      if (e.target?.dataset?.close === "true") closeModal();
+    });
 
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
 
-        ack.focus();
-      }
+    btnCancel.addEventListener("click", closeModal);
 
-      function closeModal() {
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
+    btnContinue.addEventListener("click", () => {
+      if (!ack.checked || !pendingHref) return;
 
-        if (pendingClickTarget && typeof pendingClickTarget.focus === "function") {
-          pendingClickTarget.focus();
-        }
-      }
+      setAcknowledgedFor30Days();
+      closeModal();
 
-      ack.addEventListener("change", () => {
-        btnContinue.disabled = !ack.checked;
-      });
+      // Open booking link in a new tab (matches target=_blank)
+      window.open(pendingHref, "_blank", "noopener");
+      pendingHref = null;
+    });
 
-      modal.addEventListener("click", (e) => {
-        if (e.target?.dataset?.close === "true") closeModal();
-      });
+    bookBtn.addEventListener("click", (e) => {
+      const href = bookBtn.getAttribute("href");
+      if (!href) return;
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
-      });
+      // If accepted within 30 days, let it open normally
+      if (isAcknowledgedStillValid()) return;
 
-      btnCancel.addEventListener("click", closeModal);
-
-      btnContinue.addEventListener("click", () => {
-        if (!ack.checked) return;
-
-        setAcknowledgedFor30Days();
-
-        bypassOnce = true;
-        closeModal();
-
-        if (pendingClickTarget) {
-          pendingClickTarget.click();
-          pendingClickTarget = null;
-        }
-      });
-
-      document.addEventListener(
-        "click",
-        (e) => {
-          if (isAcknowledgedStillValid()) return;
-
-          if (bypassOnce) {
-            bypassOnce = false;
-            return;
-          }
-
-          const bookingCard = e.target.closest(".book-card");
-          if (!bookingCard) return;
-
-          const inVagaro = e.target.closest(".vagaro");
-          if (!inVagaro) return;
-
-          // Important: Vagaro sometimes uses nested spans/divs inside buttons
-          const clickable = e.target.closest("a, button, [role='button'], input[type='button'], input[type='submit']");
-          if (!clickable) return;
-
-          e.preventDefault();
-          e.stopPropagation();
-
-          pendingClickTarget = clickable;
-          openModal();
-        },
-        true
-      );
-    })();
-  </script>
-</body>
-</html>
-
+      e.preventDefault();
+      openModal(href);
+    });
+  })();
+</script>
 </body>
 </html>
