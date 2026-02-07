@@ -480,6 +480,79 @@ a {
   justify-content: center;
 }
 
+/* Modal (Good Faith Exam) */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.modal__panel {
+  position: relative;
+  max-width: 560px;
+  width: calc(100% - 32px);
+  margin: 12vh auto 0;
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+
+.modal__title {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.modal__text {
+  margin: 0 0 16px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.modal__btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.modal__btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(60, 51, 49, 0.25);
+  color: var(--text-main);
+}
+
+.modal__btn--primary {
+  background: var(--hero-bg);
+  color: #fff;
+}
+
+.modal__btn--primary:hover {
+  filter: brightness(0.96);
+}
+
 /* Checkbox row in modal */
 .modal__check {
   display: flex;
@@ -494,6 +567,15 @@ a {
   width: 16px;
   height: 16px;
 }
+
+/* Disabled state for Continue button */
+.modal__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
 
 /* Disabled state for Continue button */
 .modal__btn:disabled {
