@@ -371,6 +371,29 @@ a {
   opacity: 0.85;
 }
 
+/* Weight-loss sublists (nested UL inside a service-list LI) */
+.service-list li.service-group {
+  display: block;              /* override flex */
+  padding: 6px 0;
+}
+
+.service-sublist {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0 0 0 14px;         /* indent */
+  border-left: 2px solid rgba(60, 51, 49, 0.12);
+}
+
+.service-sublist li {
+  display: flex;               /* keep mg + price aligned */
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 0.93rem;
+  opacity: 0.95;
+}
+
+
 /* FOOTER */
 
 .footer {
