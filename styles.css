@@ -661,3 +661,9 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 560px) {
   .gallery-grid { columns: 1; }
 }
+
+/* Site title as home link */
+a.site-title {
+  text-decoration: none;
+  color: var(--hero-text);
+}
