@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | K.Schaff Aesthetics</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-title">K.Schaff Aesthetics</div>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+    </button>
+
+    <nav class="nav-links" id="main-nav">
+      <a href="/#services">Services</a>
+      <a href="/gallery.html">Gallery</a>
+      <a href="/#about">About</a>
+      <a href="/#book" class="nav-cta">Book now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-section gallery-section" style="padding-top: 120px;">
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-intro">
+        Real results from real clients. Every treatment is tailored to your unique features and goals.
+      </p>
+
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-loading" id="gallery-loading">
+          <div class="gallery-spinner"></div>
+          <p>Loading gallery…</p>
+        </div>
+      </div>
+
+      <p class="gallery-empty" id="gallery-empty" style="display:none;">
+        Photos coming soon — check back after your next visit! ✨
+      </p>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">&#8592;</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next">&#8594;</button>
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Gallery image" />
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">K.Schaff Aesthetics LLC</div>
+        <p class="footer-small">Subtle, elevated, confidence-forward aesthetics.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Location</div>
+        <p class="footer-small">932 W Second North St</p>
+        <p class="footer-small">Morristown, TN 37814</p>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <p class="footer-small"><a href="mailto:kschaffaesthetics98@gmail.com">kschaffaesthetics98@gmail.com</a></p>
+        <p class="footer-small">(423) 307-2347</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ===============================
+       Mobile Nav Toggle
+       =============================== */
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks  = document.querySelector('.nav-links');
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-open');
+        navToggle.classList.toggle('nav-open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('nav-open');
+          navToggle.classList.remove('nav-open');
+        });
+      });
+    }
+
+    /* ===============================
+       Google Drive Gallery
+       =============================== */
+    (function () {
+      // ─── CONFIGURE THESE TWO VALUES ───────────────────────────────────────
+      const FOLDER_ID = "1Bdo-h1yvNypz-zu_-mRg6uiuPhwYVCL6";  // e.g. "1A2B3C4D5E6F..."
+      const API_KEY   = "AIzaSyA0YdFedtmT5SW1aZco71U2MPLA3gqLU1A"; // e.g. "AIza..."
+      // ──────────────────────────────────────────────────────────────────────
+
+      const grid    = document.getElementById("gallery-grid");
+      const loading = document.getElementById("gallery-loading");
+      const empty   = document.getElementById("gallery-empty");
+      const lightbox = document.getElementById("lightbox");
+      const lbImg   = document.getElementById("lightbox-img");
+      const lbClose = document.getElementById("lightbox-close");
+      const lbPrev  = document.getElementById("lightbox-prev");
+      const lbNext  = document.getElementById("lightbox-next");
+      const lbBg    = document.getElementById("lightbox-backdrop");
+
+      let images  = [];
+      let current = 0;
+
+      async function loadGallery() {
+        try {
+          const url =
+            `https://www.googleapis.com/drive/v3/files` +
+            `?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'` +
+            `+and+trashed=false` +
+            `&fields=files(id,name)` +
+            `&orderBy=createdTime+desc` +
+            `&pageSize=50` +
+            `&key=${API_KEY}`;
+
+          const res  = await fetch(url);
+          const data = await res.json();
+
+          loading.style.display = "none";
+
+          if (!data.files || data.files.length === 0) {
+            empty.style.display = "block";
+            return;
+          }
+
+          images = data.files.map(f => ({
+            src: `https://drive.google.com/thumbnail?id=${f.id}&sz=w800`,
+            alt: f.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")
+          }));
+
+          images.forEach((img, i) => {
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+            item.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy" />`;
+            item.addEventListener("click", () => openLightbox(i));
+            grid.appendChild(item);
+          });
+
+        } catch (err) {
+          loading.innerHTML = `<p style="opacity:.7;font-size:.9rem;">Could not load gallery — please check your API key and folder ID.</p>`;
+          console.error("Gallery error:", err);
+        }
+      }
+
+      function openLightbox(index) {
+        current = index;
+        lbImg.src = images[current].src;
+        lbImg.alt = images[current].alt;
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        lbImg.src = "";
+      }
+
+      function showPrev() {
+        current = (current - 1 + images.length) % images.length;
+        lbImg.src = images[current].src;
+      }
+
+      function showNext() {
+        current = (current + 1) % images.length;
+        lbImg.src = images[current].src;
+      }
+
+      lbClose.addEventListener("click", closeLightbox);
+      lbBg.addEventListener("click", closeLightbox);
+      lbPrev.addEventListener("click", showPrev);
+      lbNext.addEventListener("click", showNext);
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("is-open")) return;
+        if (e.key === "Escape")     closeLightbox();
+        if (e.key === "ArrowLeft")  showPrev();
+        if (e.key === "ArrowRight") showNext();
+      });
+
+      loadGallery();
+    })();
+  </script>
+
+</body>
+</html>
